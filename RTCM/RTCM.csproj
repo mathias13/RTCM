@@ -43,6 +43,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="CRC24Q.cs" />
     <Compile Include="HeaderUtil.cs" />
+    <Compile Include="MESSAGES\1005.cs" />
     <Compile Include="MESSAGES\1002.cs" />
     <Compile Include="MESSAGES\GpsRtkBase.cs" />
     <Compile Include="MESSAGES\ISendMessage.cs" />

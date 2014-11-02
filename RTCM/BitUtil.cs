@@ -24,8 +24,18 @@ namespace RTCM
             }
             else
                 return (int)value;
+        }
 
-            return BitConverter.ToInt32(GetBits(buffer, startBit, count - 1), 0);
+        public static long GetSignedLong(byte[] buffer, int startBit, int count)
+        {
+            ulong value = BitConverter.ToUInt64(GetBits(buffer, startBit, count - 1), 0);
+            byte[] sign = GetBits(buffer, startBit + count - 1, 1);
+            if (sign[0] > 0)
+            {
+                return (long)(Math.Pow(2, (double)count - 1) * -1) + (int)value;
+            }
+            else
+                return (long)value;
         }
 
         public static void WriteUnsigned(ref byte[] buffer, uint value, int startBit, int count)
@@ -54,6 +64,20 @@ namespace RTCM
             WriteBits(ref buffer, value < 0 ? new byte[1] { 0x1 } : new byte[1] { 0x0 }, startBit + count - 1, 1);
         }
 
+        public static void WriteSigned(ref byte[] buffer, long value, int startBit, int count)
+        {
+            if (count > 32)
+                count = 32;
+
+            long maxValue = (long)Math.Pow(2, count) - 1;
+            long minValue = (maxValue * -1) - 1;
+            if (value > maxValue || value < minValue)
+                throw new ArgumentException("Value is smaller or bigger than the number of bits to write", "value");
+
+            WriteBits(ref buffer, BitConverter.GetBytes(value), startBit, count - 1);
+            WriteBits(ref buffer, value < 0 ? new byte[1] { 0x1 } : new byte[1] { 0x0 }, startBit + count - 1, 1);
+        }
+
         private static byte[] GetBits(byte[] buffer, int startBit, int count)
         {
             int byteIndex = 0;
@@ -73,7 +97,7 @@ namespace RTCM
             for (int i = 0; i < bytesNeeded; i++)
                 byteSegment[i] = buffer[byteIndex + i];
 
-            byte[] correctByte = new byte[4];
+            byte[] correctByte = new byte[8];
 
             int bitsRead = 0;
             while(bitsRead < count)
