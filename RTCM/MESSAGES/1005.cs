@@ -34,7 +34,7 @@ namespace RTCM.MESSAGES
 
         private long _refZ;
 
-        public Message_1005(uint refId,uint irtf,bool gps, bool glonass, bool galileo, bool refStationIndicator, long refX, bool singleReceiverIndicator, long refY, long refZ)
+        public Message_1005(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, long refX, bool singleReceiverIndicator, long refY, long refZ)
         {
             _refId = refId;
             _irtf = irtf;
@@ -48,7 +48,7 @@ namespace RTCM.MESSAGES
             _refZ = refZ;
         }
 
-        public Message_1005(uint refId,uint irtf,bool gps, bool glonass, bool galileo, bool refStationIndicator, double refX, bool singleReceiverIndicator, double refY, double refZ)
+        public Message_1005(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, double refX, bool singleReceiverIndicator, double refY, double refZ)
         {
             _refId = refId;
             _irtf = irtf;
