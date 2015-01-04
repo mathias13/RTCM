@@ -54,9 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RTCM\RTCM.csproj">
       <Project>{7607940b-d3d8-4eae-b7b0-81d8bc4a2deb}</Project>
       <Name>RTCM</Name>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RTCM.MESSAGES
 {
-    public class Message_1005:ISendMessage
+    public class Message_1006:ISendMessage
     {
         private uint _refId;
 
@@ -34,7 +34,9 @@ namespace RTCM.MESSAGES
 
         private long _refZ;
 
-        public Message_1005(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, long refX, bool singleReceiverIndicator, long refY, long refZ)
+        private ushort _antennaHeight;
+
+        public Message_1006(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, long refX, bool singleReceiverIndicator, long refY, long refZ, ushort antennaHeight)
         {
             _refId = refId;
             _irtf = irtf;
@@ -46,9 +48,10 @@ namespace RTCM.MESSAGES
             _singleReceiverIndicator = singleReceiverIndicator;
             _refY = refY;
             _refZ = refZ;
+            _antennaHeight = antennaHeight;
         }
 
-        public Message_1005(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, double refX, bool singleReceiverIndicator, double refY, double refZ)
+        public Message_1006(uint refId, uint irtf, bool gps, bool glonass, bool galileo, bool refStationIndicator, double refX, bool singleReceiverIndicator, double refY, double refZ, double antennaHeight)
         {
             _refId = refId;
             _irtf = irtf;
@@ -60,9 +63,10 @@ namespace RTCM.MESSAGES
             _singleReceiverIndicator = singleReceiverIndicator;
             _refY = (long)(refY * 10000);
             _refZ = (long)(refZ * 10000);
+            _antennaHeight = (ushort)(antennaHeight * 10000);
         }
 
-        public Message_1005(byte[] data)
+        public Message_1006(byte[] data)
         {
             _refId = BitUtil.GetUnsigned(data, 12, 12);
             _irtf = BitUtil.GetUnsigned(data, 24, 6);
@@ -74,6 +78,7 @@ namespace RTCM.MESSAGES
             _singleReceiverIndicator = BitUtil.GetUnsigned(data, 72, 1) > 0 ? true : false; ;
             _refY = BitUtil.GetSignedLong(data, 74, 38);
             _refZ = BitUtil.GetSignedLong(data, 114, 38);
+            _antennaHeight = (ushort)BitUtil.GetUnsigned(data, 152, 16);
         }
 
         public void GetBytes(ref byte[] buffer)
@@ -92,11 +97,12 @@ namespace RTCM.MESSAGES
             BitUtil.WriteUnsigned(ref buffer, Convert.ToUInt32(_reserved1), 112, 1);
             BitUtil.WriteUnsigned(ref buffer, Convert.ToUInt32(_reserved2), 113, 1);
             BitUtil.WriteSigned(ref buffer, _refZ, 114, 38);
+            BitUtil.WriteUnsigned(ref buffer, _antennaHeight, 152, 16);
         }
     
         public int ByteLength
         {
-            get { return 19; }
+            get { return 21; }
         }
     }
 }
