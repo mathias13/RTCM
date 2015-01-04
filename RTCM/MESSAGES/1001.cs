@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RTCM.MESSAGES
 {
@@ -77,28 +74,29 @@ namespace RTCM.MESSAGES
         {
             List<SatteliteData1001> satteliteObs = new List<SatteliteData1001>();
             for (int i = 0; i < base._numberGpsSats; i++)
-                satteliteObs.Add(new SatteliteData1001(data, 64 + (74 * i)));
+                satteliteObs.Add(new SatteliteData1001(data, 64 + (58 * i)));
 
             _satteliteObs = satteliteObs.ToArray();
         }
 
         public override void GetBytes(ref byte[] buffer)
         {
-            BitUtil.WriteUnsigned(ref buffer, 1002, 0, 12);
+            BitUtil.WriteUnsigned(ref buffer, 1001, 0, 12);
             base.GetBytes(ref buffer);
             for (int i = 0; i < _satteliteObs.Length; i++ )
             {
-                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].SatteliteID, 64 + (74 * i), 6);
-                BitUtil.WriteUnsigned(ref buffer, Convert.ToUInt32(_satteliteObs[i].L1CodeIndicator), 70, 1);
-                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].L1PseudoRange, 71, 24);
-                BitUtil.WriteSigned(ref buffer, _satteliteObs[i].L1PhaserangeMinusPseudorange, 95, 20);
-                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].L1LocktimeIndicator, 115, 7);
+                int startBit = 64 + (58 * i);
+                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].SatteliteID, startBit + 0, 6);
+                BitUtil.WriteUnsigned(ref buffer, Convert.ToUInt32(_satteliteObs[i].L1CodeIndicator), startBit + 6, 1);
+                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].L1PseudoRange, startBit + 7, 24);
+                BitUtil.WriteSigned(ref buffer, _satteliteObs[i].L1PhaserangeMinusPseudorange, startBit + 31, 20);
+                BitUtil.WriteUnsigned(ref buffer, _satteliteObs[i].L1LocktimeIndicator, startBit + 51, 7);
             }
         }
     
         public new int ByteLength
         {
-            get { return (int)Math.Ceiling(8.0 + (9.25 * (double)_satteliteObs.Length)); }
+            get { return (int)Math.Ceiling(8.0 + (7.25 * (double)_satteliteObs.Length)); }
         }
     }
 }
