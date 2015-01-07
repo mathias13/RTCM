@@ -12,8 +12,8 @@ namespace RTCM.MESSAGES
         {
             MSG_1001 = 1001,
             MSG_1002 = 1002,
-            MSG_1002 = 1003,
-            MSG_1002 = 1004,
+            MSG_1003 = 1003,
+            MSG_1004 = 1004,
             MSG_1005 = 1005,
             MSG_1006 = 1006,
             Unknown

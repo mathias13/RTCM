@@ -82,6 +82,8 @@ namespace RTCM
             if (Enum.IsDefined(typeof(Enums.Messages), messageNumber))
                 messageEnum = (Enums.Messages)(int)messageNumber;
 
+            if (messageEnum == Enums.Messages.Unknown)
+                throw new Exception("MessageNumber: " + messageNumber + " cant be parsed, no valid C# type");
             if (MESSAGE_DICTIONARY.ContainsKey(messageEnum))
             {
                 object message = Activator.CreateInstance(MESSAGE_DICTIONARY[messageEnum], messageBytes);

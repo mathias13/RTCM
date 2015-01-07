@@ -42,7 +42,6 @@
     <Compile Include="BitUtil.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="CRC24Q.cs" />
-    <Compile Include="HeaderUtil.cs" />
     <Compile Include="MESSAGES\1001.cs" />
     <Compile Include="MESSAGES\1003.cs" />
     <Compile Include="MESSAGES\1004.cs" />
@@ -50,9 +49,11 @@
     <Compile Include="MESSAGES\1005.cs" />
     <Compile Include="MESSAGES\1002.cs" />
     <Compile Include="MESSAGES\GpsRtkBase.cs" />
-    <Compile Include="MESSAGES\ISendMessage.cs" />
+    <Compile Include="MESSAGES\ISerialize.cs" />
     <Compile Include="MESSAGES\Enums.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
