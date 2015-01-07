@@ -166,7 +166,7 @@ namespace RTCM.MESSAGES
     
         public new int ByteLength
         {
-            get { return (int)Math.Ceiling(8.0 + (15.625 * (double)_satteliteObs.Length)); }
+            get { return (int)Math.Ceiling((double)base.ByteLength + (15.625 * (double)_satteliteObs.Length)); }
         }
     }
 }

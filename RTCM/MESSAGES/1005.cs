@@ -2,7 +2,7 @@
 
 namespace RTCM.MESSAGES
 {
-    public class Message_1005:ISendMessage
+    public class Message_1005 : ISerialize
     {
         private uint _refId;
 

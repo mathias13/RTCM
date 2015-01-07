@@ -2,7 +2,7 @@
 
 namespace RTCM.MESSAGES
 {
-    public interface ISendMessage
+    public interface ISerialize
     {
         void GetBytes(ref byte[] buffer);
 

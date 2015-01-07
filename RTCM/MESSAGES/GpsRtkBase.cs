@@ -2,7 +2,7 @@
 
 namespace RTCM.MESSAGES
 {
-    public abstract class GpsRtkBase : ISendMessage
+    public abstract class GpsRtkBase : ISerialize
     {
         protected uint _refStationId;
 
@@ -48,7 +48,7 @@ namespace RTCM.MESSAGES
     
         public int ByteLength
         {
-            get { return 0; }
+            get { return 8; }
         }
     }
 }

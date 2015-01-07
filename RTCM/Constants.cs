@@ -8,6 +8,8 @@ namespace RTCM
 {
     public class Constants
     {
+        public static readonly byte RTCM_PREAMBLE = 0xD3;
+
         public static readonly double PRUNIT_GPS = 299792.458;
         
         public static readonly double CLIGHT = 299792458.0;
