@@ -50,5 +50,35 @@ namespace RTCM.MESSAGES
         {
             get { return 8; }
         }
+
+        public uint RefStationID
+        {
+            get { return _refStationId; }
+        }
+
+        public uint TimeOfWeek
+        {
+            get { return _tow; }
+        }
+
+        public bool SyncGNSSFlag
+        {
+            get { return _syncGnssFlag; }
+        }
+
+        public uint NumberOfGPSSats
+        {
+            get { return _numberGpsSats; }
+        }
+
+        public bool GPSDivergenceSmoothing
+        {
+            get { return _gpsDivSmooth; }
+        }
+
+        public uint GPSSmoothingInterval
+        {
+            get { return _carrSmoothInterval; }
+        }
     }
 }
