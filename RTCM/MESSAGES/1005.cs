@@ -94,5 +94,70 @@ namespace RTCM.MESSAGES
         {
             get { return 19; }
         }
+    
+        public uint ReferenceID
+        {
+            get { return _refId; }
+        }
+
+        public uint IRTFRealizationYear
+        {
+            get { return _irtf; }
+        }
+
+        public bool GPSIndicator
+        {
+            get { return _gps; }
+        }
+
+        public bool GLONASSIndicator
+        {
+            get { return _glonass; }
+        }
+
+        public bool GALILEOIndicator
+        {
+            get { return _galileo; }
+        }
+
+        public bool ReferenceStationIndicator
+        {
+            get { return _refStationIndicator; }
+        }
+        
+        public bool SingleReceiverOscillatorIndicator
+        {
+            get { return _singleReceiverIndicator; }
+        }
+
+        public long AntennaReferenceECEF_X
+        {
+            get { return _refX; }
+        }
+
+        public double AntennaReferenceECEF_X_Meters
+        {
+            get { return (double)_refX / 10000; }
+        }
+
+        public long AntennaReferenceECEF_Y
+        {
+            get { return _refY; }
+        }
+
+        public double AntennaReferenceECEF_Y_Meters
+        {
+            get { return (double)_refY / 10000; }
+        }
+
+        public long AntennaReferenceECEF_Z
+        {
+            get { return _refZ; }
+        }
+
+        public double AntennaReferenceECEF_Z_Meters
+        {
+            get { return (double)_refZ / 10000; }
+        }
     }
 }

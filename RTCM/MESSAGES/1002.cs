@@ -118,5 +118,10 @@ namespace RTCM.MESSAGES
         {
             get { return (int)Math.Ceiling((double)base.ByteLength + (9.25 * (double)_satteliteObs.Length)); }
         }
+    
+        public SatteliteData1002[] SatteliteObservations
+        {
+            get { return _satteliteObs; }
+        }
     }
 }
