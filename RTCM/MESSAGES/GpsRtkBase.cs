@@ -46,7 +46,7 @@ namespace RTCM.MESSAGES
             BitUtil.WriteUnsigned(ref buffer, _carrSmoothInterval, 61, 3);
         }
     
-        public int ByteLength
+        public virtual int ByteLength
         {
             get { return 8; }
         }

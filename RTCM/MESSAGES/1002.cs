@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 
 namespace RTCM.MESSAGES
@@ -114,7 +114,7 @@ namespace RTCM.MESSAGES
             }
         }
     
-        public new int ByteLength
+        public override int ByteLength
         {
             get { return (int)Math.Ceiling((double)base.ByteLength + (9.25 * (double)_satteliteObs.Length)); }
         }

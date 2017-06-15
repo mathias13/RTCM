@@ -134,7 +134,7 @@ namespace RTCM.MESSAGES
             }
         }
     
-        public new int ByteLength
+        public override int ByteLength
         {
             get { return (int)Math.Ceiling((double)base.ByteLength + (12.625 * (double)_satteliteObs.Length)); }
         }
